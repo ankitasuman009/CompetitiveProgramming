@@ -1,0 +1,33 @@
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        if(amount==0) return 0;
+        if(coins.length==1 && coins[0]>amount) return -1;
+        
+        int c = 0;
+        int temp = 0;
+        for(int i=0;i<coins.length-1;i++){
+            int k = i;
+            for(int j =i+1;j<coins.length;j++){
+                if(coins[k]>coins[j]) k=j;
+            }
+            if(k!=i){
+                int t = coins[k];
+                coins[k] = coins[i];
+                coins[i] =t;
+            }
+        }
+        
+        for(int i=coins.length-1;i>=0;i--){
+            while(true){
+                temp += coins[i];
+                if(temp>amount){
+                    temp -= coins[i];
+                    break;
+                }
+                c++;
+            }
+            if(temp==amount) return c;
+        }
+        return -1;
+    }
+}
