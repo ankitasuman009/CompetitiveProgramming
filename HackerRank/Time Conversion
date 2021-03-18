@@ -1,0 +1,11 @@
+static String timeConversion(String s) {
+        
+         String[] strArr = s.split(":");
+         String hh = strArr[0];
+         String ap = strArr[2];
+         if(ap.endsWith("PM") && Integer.parseInt(hh) < 12 )
+             hh = String.valueOf(Integer.parseInt(hh) + 12);
+         if(ap.endsWith("AM") && Integer.parseInt(hh) == 12) hh = "00";
+         String arr[] = strArr[2].split("");
+         return(String.valueOf(hh+":"+strArr[1]+":"+arr[0]+arr[1]));
+    }
