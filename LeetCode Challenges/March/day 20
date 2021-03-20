@@ -1,0 +1,52 @@
+import java.util.*;
+class UndergroundSystem {
+
+    int id, t;
+        String stationName;
+        static Hashtable<Integer, Integer> ht = new Hashtable<>();
+        static Hashtable<Integer, String> hs = new Hashtable<>();
+        static Hashtable<Integer, String> he = new Hashtable<>();
+    public UndergroundSystem() {
+        
+    }
+    
+    public void checkIn(int id, String stationName, int t) {
+        this.id = id;
+        this.stationName = stationName;
+        this.t = t;
+        this.ht.put(id, t);
+        hs.put(id, stationName);
+        
+    }
+    
+    public void checkOut(int id, String stationName, int t) {
+        this.id = id;
+        this.stationName = stationName;
+        this.t = t;
+        if(ht.containsKey(id)){
+            ht.put(id, t-ht.get(id));
+            he.put(id, stationName);
+        }
+    }
+    
+    public double getAverageTime(String startStation, String endStation) {
+        double sum = 0, n=0;
+        for (Map.Entry<Integer, String> e : hs.entrySet()) 
+            if(e.getValue().equals(startStation)){
+                int id = e.getKey();
+                if(he.containsKey(id) && he.containsValue(endStation)){
+                    sum += ht.get(id);
+                    n++;
+                }
+            }
+        return (sum/n);
+    }
+}
+
+/**
+ * Your UndergroundSystem object will be instantiated and called as such:
+ * UndergroundSystem obj = new UndergroundSystem();
+ * obj.checkIn(id,stationName,t);
+ * obj.checkOut(id,stationName,t);
+ * double param_3 = obj.getAverageTime(startStation,endStation);
+ */
