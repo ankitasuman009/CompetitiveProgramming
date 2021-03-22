@@ -1,0 +1,11 @@
+static int jumpingOnClouds(int[] c, int k) {
+         int num = 100;
+         int i=0;
+         while(true){
+             num--;
+             if(c[i]==1) num -= 2;
+             i = (i+k)%c.length;
+             if(i==0) break;
+         }
+         return num;
+    }
