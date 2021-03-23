@@ -1,0 +1,18 @@
+public static int threeSumMulti(int[] arr, int target) {
+         int count = 0;
+        for(int i=0;i<arr.length-2;i++){
+            int temp = arr[i];
+            for(int j=i+1;j<arr.length-1;j++){
+                if(temp+arr[j]<target){
+                    temp += arr[j];
+                    for(int k=j+1;k<arr.length;k++){
+                        if(temp+arr[k]==target){
+                            count++;
+                        }
+                    }
+                    temp = arr[i];
+                }
+            }
+        }
+        return count;
+    }
