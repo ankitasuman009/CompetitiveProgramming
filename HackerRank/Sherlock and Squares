@@ -1,0 +1,7 @@
+static int squares(int a, int b) {
+          double sqrt1 = Math.sqrt(a);
+          double sqrt2 = Math.sqrt(b);
+          if(sqrt1-Math.floor(sqrt1)==0) 
+              return (int)(Math.floor(sqrt2)-Math.floor(sqrt1) + 1);
+          return (int)(Math.floor(sqrt2)-Math.floor(sqrt1));
+    }
