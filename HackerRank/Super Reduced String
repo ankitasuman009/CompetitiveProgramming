@@ -1,0 +1,18 @@
+static String superReducedString(String s) {
+          char str[] = s.toCharArray();
+          int count;
+          Map<Character, Integer> ht = new HashMap<>();
+          String str2 = "";
+          for(int i=0;i<str.length;i++){
+              count = 0;
+              for(int j=0;j<str.length;j++)
+                  if(str[i]==str[j])
+                      count++;
+              ht.put(str[i], count);
+          }
+          for(Map.Entry<Character, Integer> e:ht.entrySet()){
+              if(e.getValue()%2!=0) str2 += e.getKey().toString();
+          }
+          if(str2.isEmpty()) return "Empty String";
+          return str2;
+    }
