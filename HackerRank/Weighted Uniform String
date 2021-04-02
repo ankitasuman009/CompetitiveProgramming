@@ -1,0 +1,18 @@
+static String[] weightedUniformStrings(String s, int[] queries) {
+        HashMap<Character, Integer> al = new HashMap<>();
+          ArrayList<Integer> ar = new ArrayList<>();
+          
+          int j = 0;
+          String str1[] = new String[queries.length];
+          for(int i=0;i<s.length();i++){
+              if(!al.containsKey(s.charAt(i))) al.put(s.charAt(i), (s.charAt(i)-'a')+1);
+              else al.put(s.charAt(i), al.get(s.charAt(i))+(s.charAt(i)-'a')+1);
+              ar.add(al.get(s.charAt(i)));
+          }
+          int n = 0;
+          for(int i=0;i<queries.length;i++){
+              if(ar.contains(queries[i])) str1[n++] = "Yes";
+              else str1[n++] = "No";
+          }
+        return str1;
+    }
