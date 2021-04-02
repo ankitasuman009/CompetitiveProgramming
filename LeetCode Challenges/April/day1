@@ -1,0 +1,47 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package first;
+import java.util.*;
+class ListNode{
+    int val;
+    ListNode next;
+    ListNode(){};
+    ListNode(int val){this.val = val;};
+    ListNode(int val, ListNode next){this.val = val; this.next = next;};
+    
+}
+public class Solution {
+
+       public static boolean isPalindrome(ListNode head) {
+        ListNode p = head;
+        int arr[] = new int[10^5];
+        int n = 0;
+        while(p!=null){
+            arr[n++] = p.val;
+            p = p.next;
+        }
+        for(int i=0,j=n-1;i<n;i++,j--){
+            if(arr[i]!=arr[j]) return false;
+        }
+        return true;
+    }
+
+    
+    public static void main(String args[]) {
+    ListNode head = null;
+    int n = new Scanner(System.in).nextInt();
+    while(n!=0){
+        int num = new Scanner(System.in).nextInt();
+        ListNode newNode = new ListNode(num, head);
+        head = newNode;
+        n--;
+    }
+    System.out.print(isPalindrome(head));
+  
+    }
+}
+
+
