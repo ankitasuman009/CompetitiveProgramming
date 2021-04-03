@@ -1,0 +1,12 @@
+static String funnyString(String s) {
+        StringBuffer strb = new StringBuffer();
+        strb.append(s);
+        strb.reverse();
+        for(int i=0,j=strb.length()-1;i<s.length()-1;i++,j--){
+            if(Math.abs(strb.charAt(i+1)-strb.charAt(i))!=Math.abs(s.charAt(i+1)-s.charAt(i)))
+                return "Not Funny";
+        }
+        return "Funny";
+                    
+
+    }
