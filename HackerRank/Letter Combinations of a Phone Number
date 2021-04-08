@@ -1,0 +1,36 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        List<String> al1 = new ArrayList<>();
+        if(digits.length()==0) return al1;
+        HashMap<String, String> hm = new HashMap<>();
+        hm.put("2", "abc");
+        hm.put("3", "def");
+        hm.put("4", "ghi");
+        hm.put("5", "jkl");
+        hm.put("6", "mno");
+        hm.put("7", "pqrs");
+        hm.put("8", "tuv");
+        hm.put("9", "wxyz");
+        int n = 0;
+        String str[] = new String[digits.length()];
+        for(HashMap.Entry e:hm.entrySet())
+            if(e.getKey().equals(String.valueOf(digits.charAt(n)))){
+                str[n] = String.valueOf(e.getValue());
+                n++;
+                if(n==digits.length()) break;
+            }
+        char c1[] = str[0].toCharArray();
+        for(int i=0;i<str[0].length();i++){
+            if(str.length>1){
+            String str2 = String.valueOf(str[0].charAt(i));
+            for(int j=1;j<str.length;j++){
+                char c2[] = str[j].toCharArray();
+                for(int k=0;k<c2.length;k++)
+                    al1.add(str2+String.valueOf(c2[k]));
+                }
+            }
+            else al1.add(String.valueOf(c1[i]));
+        }
+        return al1;
+    }
+}
