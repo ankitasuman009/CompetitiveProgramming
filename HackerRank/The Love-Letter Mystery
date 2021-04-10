@@ -1,0 +1,9 @@
+static int theLoveLetterMystery(String s) {
+        int c = 0;
+        for(int i=0, j=s.length()-1;i<s.length()/2;i++, j--){
+            if(s.charAt(i)!=s.charAt(j))
+                c += ((s.charAt(i)-'a')>(s.charAt(j)-'a'))?(s.charAt(i)-'a')-(s.charAt(j)-'a'):(s.charAt(j)-'a')-(s.charAt(i)-'a');
+    }
+        return c;
+
+    }
