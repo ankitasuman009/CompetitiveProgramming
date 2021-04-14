@@ -1,16 +1,20 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
+
+
+import java.util.*;
+
+
+//  Definition for singly-linked list.
+   class ListNode {
+      int val;
+      ListNode next;
+      ListNode() {}
+      ListNode(int val) { this.val = val; }
+      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+  }
+ 
 class Solution {
-    public ListNode partition(ListNode head, int x) {
-       int arr[] = new int[200];
+    public static ListNode partition(ListNode head, int x) {
+        int arr[] = new int[200];
         int i = 0;
         ListNode p = head;
         while(p!=null){
@@ -29,5 +33,21 @@ class Solution {
             temp = newNode;
         }
         return temp;
+    }
+    public static void main(String args[]){
+        int arr[];
+        ListNode head = null;
+        int n = new Scanner(System.in).nextInt();
+        while(n!=0){
+//            head.val = ;
+            ListNode newNode = new ListNode(new Scanner(System.in).nextInt(), head);
+            head = newNode;
+            n--;
+        }
+        ListNode res = partition(head, 3);
+        while(res!=null){
+            System.out.println(res.val);
+            res = res.next;
+        }
     }
 }
