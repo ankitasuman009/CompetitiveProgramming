@@ -1,0 +1,10 @@
+class Solution {
+    public int[] constructArray(int n, int k) {
+        int arr[] = new int[n];
+        for(int i=0, f=1, l=k+1;i<=k;i++)
+            arr[i] = i%2==0?f++:l--;
+        for(int i=k+1;i<n;)
+            arr[i] = ++i;
+        return arr;
+    }
+}
