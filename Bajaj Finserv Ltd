@@ -1,0 +1,42 @@
+
+
+import java.util.*;
+
+
+class Solution {
+    public static void main(String agrs[]){
+        String s = new Scanner(System.in).nextLine();
+        String str[] = {s.substring(0, s.length()/2), s.substring(s.length()/2)};
+        char c1 = str[0].charAt(0);
+        char c2 = str[1].charAt(str[1].length()-1);
+        int f1 = 0, f2 = 0;
+        while(c1==c2){
+            int i = 0;
+            int j = str[1].length()-1;
+            while(c1==str[0].charAt(i)){
+                i++;
+                if(i==str[0].length()){
+                    str[0] = "";
+                    f1 = 1;
+                    break;
+                }
+            }
+            while(c1==str[1].charAt(j)){
+                if((j+1)==1){
+                    str[1] = "";
+                    f2 = 1;
+                    break;
+                }
+                j--;
+            }
+            if(f1==0) str[0] = str[0].substring(i);
+            else break;
+            if(f2==0) str[1] = str[1].substring(0, j+1);
+            else break;
+            c1 = str[0].charAt(0);
+            c2 = str[1].charAt(str[1].length()-1);
+        }
+        String str2 = str[1] + str[0];
+        System.out.print(str2);
+    }
+}
