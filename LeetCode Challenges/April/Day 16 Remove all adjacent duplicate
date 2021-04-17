@@ -1,0 +1,25 @@
+class Solution2 {
+    public static String removeDuplicates(String s, int k) {
+        if(k==1) return s;
+        int i = 0;
+        while(true){
+            char c = s.charAt(i);
+            int j = i;
+            while(c==s.charAt(j) && (j-i)<k){
+                j++;
+                if(j==s.length()) break;
+            }
+            if((j-i)==k){
+                
+                s = s.substring(0, i) + s.substring(j);
+                i = 0;
+            }
+            else i++;
+            if(i==s.length()-1) break;
+        }
+        return s;
+    }
+    public static void main(String agrs[]){
+        System.out.print(removeDuplicates("pbbcggttciiippooaais", 2));
+    }
+}
