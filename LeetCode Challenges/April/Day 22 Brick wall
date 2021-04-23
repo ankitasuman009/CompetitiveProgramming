@@ -1,0 +1,22 @@
+class Solution {
+    public int leastBricks(List<List<Integer>> wall) {
+        Iterator itr = wall.iterator();
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        while(itr.hasNext()){
+            List<Integer> list = new ArrayList<>();
+            list = (List<Integer>)itr.next();
+            int inx = 0;
+            for(Integer i: list){
+                inx += i;
+                if(inx!=wall.size()){
+                    if(hm.containsKey(inx)) hm.put(inx, hm.get(inx)+1);
+                    else hm.put(inx, 1);
+                }
+            }
+        }
+        int max = 0;
+        for(Map.Entry<Integer, Integer> e: hm.entrySet()) if(max<e.getValue()) max = e.getValue();
+        if(max==wall.size()) return wall.size();
+        return wall.size()-max;
+    }
+}
