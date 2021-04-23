@@ -1,0 +1,16 @@
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        Iterator itr = triangle.iterator();
+        int i = 0, ans = 0;
+        while(itr.hasNext()){
+            List<Integer> lst1 = (List<Integer>)itr.next();
+            int j = i;
+            if(lst1.size()>1){
+                if(lst1.get(j)<lst1.get(j+1)) i = j;
+                else i = j+1;
+            }
+            ans += lst1.get(i);
+        }
+        return ans;
+    }
+}
