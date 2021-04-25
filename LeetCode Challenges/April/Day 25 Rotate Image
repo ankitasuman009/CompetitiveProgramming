@@ -1,0 +1,45 @@
+
+
+import java.util.*;
+
+ 
+
+
+class Solution2 {
+    
+    public static int[][] rotate(int[][] matrix) {
+        int k=matrix.length-1;
+        for(int i=0;i<matrix.length/2;i++){
+            for(int j=i;(i+j)<matrix.length-1;j++){
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[k-j][i];
+                matrix[k-j][i] = matrix[k-i][k-j];
+                matrix[k-i][k-j] = matrix[j][k-i];
+                matrix[j][k-i] = temp;
+            }
+        }
+        return matrix;
+    }
+    
+    
+    public static void main(String agrs[]){
+    
+        int arr[][] = new int[4][4];
+        for(int i=0;i<arr.length;i++)
+            for(int j=0;j<arr[i].length;j++)
+                arr[i][j] = new Scanner(System.in).nextByte();
+        for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr[i].length;j++)
+                System.out.print(arr[i][j]);
+            System.out.println();
+        }
+        
+        arr = rotate(arr);
+       
+        for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr[i].length;j++)
+                System.out.print(arr[i][j]);
+            System.out.println();
+        }
+    }
+}
