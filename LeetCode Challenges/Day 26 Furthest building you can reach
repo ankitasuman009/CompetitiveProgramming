@@ -1,0 +1,24 @@
+class Solution {
+    public int furthestBuilding(int[] heights, int bricks, int ladders) {
+        int c = 0;
+        for(int i=0;i<heights.length-1;i++){
+            if(heights[i]<heights[i+1]){
+                int f = 0;
+                int diff = heights[i+1] - heights[i];
+                if(diff<=bricks){
+                    c++;
+                    bricks -= diff;
+                    f = 1;
+                }
+                else if(ladders!=0){
+                    c++;
+                    ladders--;
+                    f = 1;
+                }
+                if(f==0) break;
+            }
+            else c++;
+        }
+        return c;
+    }
+}
