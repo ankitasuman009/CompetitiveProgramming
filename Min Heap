@@ -1,0 +1,51 @@
+
+
+import java.util.*;
+
+
+class Solution2 {
+    
+    int arr[];
+    Solution2(){
+        System.out.println("Enter n: ");
+        int n = new Scanner(System.in).nextByte();
+        arr = new int[n];
+        for(int i=0;i<arr.length;i++)
+            arr[i] = new Scanner(System.in).nextByte();
+    }
+    
+    void swap(int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
+    void minheap(int i){
+        int index = i, left = 2*i+1, right = 2*i+2;
+        if(left<arr.length) index = left;
+        if(right<arr.length && arr[left]>arr[right]) index = right;
+        if(arr[index]<arr[i]) swap(index, i);
+        
+        for(int k=i/2-1;k>=0;k--) minheap(k);
+        
+    }
+    public int[] furthestBuilding() {
+        for(int i=0;i<arr.length/2;i++){
+            minheap(i);
+        }
+        return arr;
+    }
+    
+    
+    
+    public static void main(String agrs[]){
+    
+        Solution2 obj = new Solution2();
+        int arr2[] = obj.furthestBuilding();
+        System.out.println("Min Heap tree -");
+        for(int i=0;i<arr2.length;i++) System.out.print(arr2[i]);
+        
+    
+    
+    }
+}
