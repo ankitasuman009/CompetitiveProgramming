@@ -1,0 +1,30 @@
+
+
+import java.util.*;
+
+ 
+
+
+class Solution2 {
+
+    
+    public static int beautifulBinaryString(String b) {
+
+        int f = 0 , c = 0;
+        for(int i=0;i<b.length()-2;i++){
+            String str = b.substring(i, i+3);
+            if(str.equals("010")){
+                c++;
+                i += 2;
+            }
+        }
+        return c;
+    }
+    
+    
+    
+    public static void main(String agrs[]){
+        System.out.print(beautifulBinaryString("0101010"));
+    
+  }
+}
