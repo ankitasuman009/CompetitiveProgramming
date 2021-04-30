@@ -1,0 +1,33 @@
+
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.*;
+
+
+class Solution2 {
+    
+    public static int makingAnagrams(String s1, String s2) {
+        HashMap<Character, Integer> hm1 = new HashMap<>();
+        Integer c = 0;
+        for(int i=0;i<s1.length();i++){
+            if(hm1.containsKey(s1.charAt(i))) hm1.put(s1.charAt(i), hm1.get(s1.charAt(i))+1);
+            else hm1.put(s1.charAt(i), 1);
+        }
+        for(int i=0;i<s2.length();i++){
+            if(hm1.containsKey(s2.charAt(i))) hm1.put(s2.charAt(i), hm1.get(s2.charAt(i))-1);
+            else hm1.put(s2.charAt(i), 1);
+        }
+        for(Map.Entry e1:hm1.entrySet()){
+            c += Math.abs((Integer) e1.getValue());
+        }
+        return c;
+    }
+    
+    
+    
+    public static void main(String agrs[]){
+    
+    System.out.print(makingAnagrams("absdjkvuahdakejfnfauhdsaavasdlkj", "djfladfhiawasdkjvalskufhafablsdkashlahdfa"));
+    }
+}
