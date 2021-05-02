@@ -1,0 +1,60 @@
+
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.*;
+
+class Solution2 {
+    
+    String[] word;
+    public Solution2(String[] words) {
+        word = words;
+    }
+    
+    public int f(String prefix, String suffix) {
+        char cpre[] = prefix.toCharArray();
+        char csuf[] = suffix.toCharArray();
+        int index = -1;
+        for(int i=0;i<word.length;i++){
+            char c[] = word[i].toCharArray();
+            int f = 0;
+            int k2 = csuf.length-1;
+            for(int j=0, k=c.length-1;j<c.length;j++, k--){
+                if(j<cpre.length){
+                    if(cpre[j]!=c[j]){
+                        f = 1;break;
+                    }
+                }  
+                if(k2>=0)
+                    if(csuf[k2--]!=c[k]){
+                        f = 1;break;
+                    }
+            }
+            if(f==0) index = i; 
+        }
+        return index;
+    }
+    
+
+    
+    public static void main(String agrs[]){
+    String str[] = {"cabaabaaaa","ccbcababac","bacaabccba","bcbbcbacaa","abcaccbcaa","accabaccaa","cabcbbbcca",
+    "ababccabcb","caccbbcbab","bccbacbcba"};
+    Solution2 obj = new Solution2(str);
+    int param_1 = obj.f("bccbacbcba","a");
+    int param_2 = obj.f("ab","abcaccbcaa");
+    int param_3 = obj.f("a","aa");
+    int param_4 = obj.f("cabaaba","abaaaa");
+    int param_5 = obj.f("cacc","accbbcbab");
+    int param_6 = obj.f("ccbcab","bac");
+    int param_7 = obj.f("bac","cba");
+    int param_8 = obj.f("ac","accabaccaa");
+    int param_9 = obj.f("bac","cba");
+    int param_10 = obj.f("ccbca","cbcababac");
+    
+    
+    System.out.print(param_1+" "+param_2+" "+param_3+" "+param_4+" "+param_5+" "+param_6+" "+param_7+" "+param_8+" "+param_9+" "+param_10);    
+    
+    
+    }
+}
