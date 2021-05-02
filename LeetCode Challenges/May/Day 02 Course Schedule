@@ -1,0 +1,22 @@
+class Solution {
+    public int scheduleCourse(int[][] courses) {
+        for(int i=0;i<courses.length-1;i++){
+            int k = i;
+            for(int j=i+1;j<courses.length;j++)
+                if(courses[j][1]<courses[k][1]) k = j;
+            if(k!=i){
+                int temp[] = courses[i]; 
+                courses[i] = courses[k];
+                courses[k] = temp;
+            }
+        }
+        int duration = 0, c = 0;
+        for(int i=0;i<courses.length;i++){
+            if((duration+courses[i][0])<=courses[i][1]){
+                duration += courses[i][0];
+                c++;
+            }
+        }
+        return c;
+    }
+}
