@@ -1,0 +1,20 @@
+class Solution {
+    public int minDistance(String word1, String word2) {
+        if(word2.length()>word1.length()){
+            String temp = word1;
+            word1 = word2;
+            word2 = temp;
+        }
+        char w1[] = word1.toCharArray(), w2[] = word2.toCharArray();;
+        int max = 0;
+        for(int i=0;i<w1.length;i++){
+            int c = 0;
+            for(int j=0;j<w2.length;j++){
+                if((i+j)<w1.length && w1[i+j]==w2[j]) c++;
+            }
+            if(max<c) max = c;
+        }
+        
+        return (w1.length + w2.length) - (2*max);
+    }
+}
