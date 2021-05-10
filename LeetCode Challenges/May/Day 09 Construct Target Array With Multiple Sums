@@ -1,0 +1,38 @@
+
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.*;
+
+class Solution2 {
+    public static boolean isPossible(int[] target) {
+        Queue<Integer> pQueue = new PriorityQueue<>((a,b) -> b - a);
+        int sum = 0;
+        for(int i=0;i<target.length;i++){
+                pQueue.add(target[i]);
+                sum += target[i];
+            }
+        
+        while(pQueue.peek()!=1){
+            int max = pQueue.poll();
+            System.out.println(max);
+            sum -= max;
+            if(max<=sum || sum<1) return false;
+            int num = max % sum;
+            sum += num;
+            pQueue.add(num!=0?num:sum);
+            
+        }
+        return true;
+    }
+    
+
+    
+    public static void main(String agrs[]){
+    
+    int arr[] = {9, 5, 3};
+    System.out.print(isPossible(arr));
+
+    
+    }
+}
