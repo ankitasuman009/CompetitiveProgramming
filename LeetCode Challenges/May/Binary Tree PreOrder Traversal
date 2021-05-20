@@ -1,0 +1,64 @@
+
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.*;
+
+class Solution2 {
+ 
+  public static class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+      TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+      }
+  }
+
+
+
+    public static TreeNode insert(TreeNode node, int value){
+    if(node == null){
+        return new TreeNode(value);
+    }
+    if(value < node.val){
+        node.left = insert(node.left, value);
+    }
+    else if(value > node.val){
+        node.right = insert(node.right, value);
+    }
+    return node;
+}
+
+    public static void displayData(TreeNode node){
+      System.out.print(node.val + " ");
+    }
+  
+  public static void preOrder(TreeNode node){
+    if(node != null){
+      displayData(node);
+      preOrder(node.left);           
+      preOrder(node.right);
+    }
+  }    
+  
+    
+    public static void main(String agrs[]){
+      int n = new Scanner(System.in).nextInt();
+      TreeNode head = null;
+      while(n!=0){
+        int num = new Scanner(System.in).nextInt();
+        head = insert(head, num);
+        n--;
+      }
+      preOrder(head);
+      System.out.print(arr2);
+
+    
+    
+    }
+}
