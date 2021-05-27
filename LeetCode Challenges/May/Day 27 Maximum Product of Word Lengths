@@ -1,0 +1,32 @@
+
+
+
+import java.util.*;
+
+class Solution2 {
+    public static boolean common(char[] c1, char[] c2){
+        for(int i=0;i<c1.length;i++){
+            for(int j=0;j<c2.length;j++)
+                if(c1[i]==c2[j]) return false;
+        }
+        return true;
+    }
+    
+    public static int maxProduct(String[] words) {
+        int max = 0;
+        for(int i=0;i<words.length-1;i++){
+            char[] ci = ((String)words[i]).toCharArray();
+            for(int j=i+1;j<words.length;j++){ 
+                char[] cj = ((String)words[j]).toCharArray();
+                if(common(ci, cj))
+                    max = max<(ci.length*cj.length)?(ci.length*cj.length):max;
+            }
+        }
+        return max;
+    }
+    
+    public static void main(String agrs[]){
+        String[] str = {"abcw", "baz", "foo", "bar", "xtfn", "abcdef"};
+       System.out.print(maxProduct(str));
+    }
+}
