@@ -1,0 +1,35 @@
+
+
+import java.util.*;
+
+class Solution2 {
+    static HashMap<Integer, Integer> hm = new HashMap<>();
+    public static boolean valid(int num){
+        if(!hm.containsKey(num)){
+            hm.put(num, 1);
+            return true;
+        }
+        hm.clear();
+        return false;
+    }
+    public static int maximumUniqueSubarray(int[] nums) {
+        int sum = 0, max = 0;
+        for(int i=0;i<nums.length;i++){
+            for(int j=i;j<nums.length;j++){
+                if(valid(nums[j])) sum += nums[j];
+                else{
+                    break;
+                }
+            }
+            hm.clear(); 
+            max = max<sum?sum:max;
+            sum = 0;
+        }
+        return max;
+    }
+    
+    public static void main(String agrs[]){
+        int[] str = {5, 2, 1, 2, 5, 2, 1, 2, 5};
+       System.out.print(maximumUniqueSubarray(str));
+   }
+}
