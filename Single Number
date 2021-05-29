@@ -1,0 +1,30 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int singleNumber(final List<Integer> A) {
+        // HashMap<Integer, Integer> hm1 = new HashMap<>();
+        // HashMap<Integer, Integer> hm2 = new HashMap<>();
+        // for(int a: A){
+        //     if(hm1.containsKey(a)){
+        //         hm2.remove(a);
+        //     }
+        //     else{
+        //         hm1.put(a, 1);
+        //         hm2.put(a, 1);
+        //     }
+        // }
+        // for(Map.Entry e: hm2.entrySet()){
+        //     return (int)e.getKey();
+        // }
+        // return 0;
+        if(A.size()==1) return A.get(0);
+        int[] arr = new int[A.size()];
+        int i = 0;
+        for(int a: A) arr[i++] = a;
+        Arrays.sort(arr);
+        for(int j=1;j<arr.length-1;j++){
+            if(arr[j-1]!=arr[j] && arr[j]!=arr[j+1]) return arr[j];
+        }
+        if(arr.length>1 && arr[0]!=arr[1]) return arr[0];
+        return arr[arr.length-1];
+    }
+}
