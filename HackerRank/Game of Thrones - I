@@ -20,7 +20,6 @@ class Result {
      */
 
     public static String gameOfThrones(String s) {
-    // Write your code here
     HashMap<Character, Integer> hm = new HashMap<>();
         int c = 0;
         for(int i=0;i<s.length();i++){
