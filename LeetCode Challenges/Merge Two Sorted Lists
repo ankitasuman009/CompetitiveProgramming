@@ -1,0 +1,103 @@
+
+package first;
+import java.util.*;
+
+class Solution2 {
+
+    
+     public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ }
+     
+     public static void display(ListNode head){
+         ListNode temp = head;
+         while(temp!=null){
+            System.out.print(temp.val);
+            temp = temp.next;
+        }
+         System.out.println();
+     }
+     
+     public static ListNode insert(ListNode l, int n){
+         
+            int num = new Scanner(System.in).nextInt();
+            ListNode newNode = new ListNode(num);
+            ListNode p = newNode;
+            ListNode head = newNode;
+        for(int i=0;i<n-1;i++){ 
+            int num2 = new Scanner(System.in).nextInt();
+            ListNode newNode2 = new ListNode(num2);
+            p.next = newNode2;
+            p = newNode2;
+        }
+        return head;
+     }
+    
+     public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+         if(l1==null && l2==null) return null;
+         if(l1==null && l2!=null) return l2;
+         if(l1!=null && l2==null) return l1;
+         ListNode p = null;
+         ListNode newNode = null;
+         ListNode p2 = null;
+         while(l1!=null && l2!=null){
+             if(l1.val<l2.val){
+                 newNode = new ListNode(l1.val);
+                 l1 = l1.next;
+             }
+             else{
+                 newNode = new ListNode(l2.val);
+                 l2 = l2.next;
+             }
+             
+                 if(p!=null){
+                    p.next = newNode;
+                    p = newNode;
+                }
+                 else{
+                     p = newNode;
+                     p2 = newNode;
+                 }
+         }
+         while(l1!=null){
+             newNode = new ListNode(l1.val);
+                 l1 = l1.next;
+                 if(p!=null){
+                    p.next = newNode;
+                    p = newNode;
+                }
+                else p = newNode;
+         }
+         while(l2!=null){
+             newNode = new ListNode(l1.val);
+                 l1 = l1.next;
+                 if(p!=null){
+                    p.next = newNode;
+                    p = newNode;
+                }
+                else p = newNode;
+         }
+        return p2;
+    }
+    
+    public static void main(String agrs[]){
+        Solution2 obj = new Solution2();
+        ListNode l1 = new ListNode();
+        ListNode l2 = new ListNode();
+        int n1 = new Scanner(System.in).nextInt();
+        l1 = insert(l1, n1);
+        
+        int n2 = new Scanner(System.in).nextInt();
+        l2 = insert(l2, n2);
+        
+        
+       ListNode temp = obj.mergeTwoLists(l1, l2);
+       display(temp);
+
+    
+    }
+}
