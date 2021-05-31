@@ -1,0 +1,96 @@
+
+
+import java.util.*;
+
+class Solution2 {
+    
+     public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ }
+     
+     public static void display(ListNode head){
+         ListNode temp = head;
+         while(temp!=null){
+            System.out.print(temp.val);
+            temp = temp.next;
+        }
+         System.out.println();
+     }
+     
+     public static ListNode insert(ListNode l, int n){
+         
+            int num = new Scanner(System.in).nextInt();
+            ListNode newNode = new ListNode(num);
+            ListNode p = newNode;
+            ListNode head = newNode;
+        for(int i=0;i<n-1;i++){ 
+            int num2 = new Scanner(System.in).nextInt();
+            ListNode newNode2 = new ListNode(num2);
+            p.next = newNode2;
+            p = newNode2;
+        }
+        return head;
+     }     
+     public static ListNode sorting(ListNode head){
+         ListNode l = head;
+         while(l!=null){
+             ListNode temp = l;
+             int f = 0;
+             while(temp.next!=null){
+                 ListNode p = temp.next;
+                 if(temp.val>p.val){
+                     int num = temp.val;
+                    temp.val = p.val;
+                    p.val = num;f = 1;
+                 }
+                 temp = temp.next;
+             }
+             if(f==0 && temp.next==null) break;
+         }
+         return l;
+//int n = 0;
+//        int[] arr = new int[5*10^5];
+//while(l!=null){
+//    arr[n] = l.val;
+//    n++;
+//    l = l.next;
+//}
+//        for(int i=0;i<n-1;i++){
+//            int k = i;
+//            for(int j=i+1;j<n;j++){
+//                if(arr[k]>arr[j])
+//                    k = j;
+//            }
+//            if(k!=i){
+//                int temp = arr[i];
+//                arr[i] = arr[k];
+//                arr[k] = temp;
+//            }
+//            else break;
+//        }
+//            ListNode newNode = new ListNode(arr[0]);
+//            ListNode p = newNode;
+//        for(int i=1;i<n;i++){
+//            ListNode newNode2 = new ListNode(arr[i]);
+//            p.next = newNode2;
+//            p = newNode2;
+//        }
+//         return newNode;
+
+     }
+    
+    public static void main(String agrs[]){
+        Solution2 obj = new Solution2();
+        ListNode l1 = new ListNode();
+        ListNode l2 = new ListNode();
+        int n1 = new Scanner(System.in).nextInt();
+        l1 = insert(l1, n1);       
+       ListNode temp = obj.sorting(l1);
+       display(temp);
+    
+    }
+}
