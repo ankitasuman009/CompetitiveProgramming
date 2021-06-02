@@ -1,0 +1,129 @@
+
+
+import java.util.*;
+
+class Solution2 {
+    public static int numSubmatrixSumTarget(int[][] matrix, int target) {
+        int sum1 = 0, sum2 = 0;
+        int c = 0;
+        for(int i=0;i<matrix.length;i++){
+            sum2 = 0;
+            for(int j=0;j<matrix[i].length;j++){
+                sum1 += matrix[i][j];
+                sum2 += matrix[j][i];
+                if(sum1==target) c++;
+                if(sum2==target) c++;
+            }
+        }
+        if(sum1+sum2==target) c++;
+        return c;
+    }
+
+    
+     public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ }
+     
+     public static void display(ListNode head){
+         ListNode temp = head;
+         while(temp!=null){
+            System.out.print(temp.val);
+            temp = temp.next;
+        }
+         System.out.println();
+     }
+     
+     public static ListNode insert(ListNode l, int n){
+         if(n==0) return null;
+         int num = new Scanner(System.in).nextInt();
+            ListNode newNode = new ListNode(num);
+            ListNode p = newNode;
+            ListNode head = newNode;
+        for(int i=0;i<n-1;i++){ 
+            int num2 = new Scanner(System.in).nextInt();
+            ListNode newNode2 = new ListNode(num2);
+            p.next = newNode2;
+            p = newNode2;
+        }
+        return head;
+     }
+     
+     public static ListNode mergeKLists(ListNode[] lists) {
+         if(lists.length==0) return null;
+         ListNode p = null;
+         ListNode p2 = null;
+         ListNode l1 = lists[0];
+         for(int i=1;i<lists.length;i++){
+             ListNode l2 = lists[i];
+             while(l1!=null && l2!=null){
+                ListNode newNode = null;
+                if(l1.val<l2.val){
+                    newNode = new ListNode(l1.val);
+                    l1 = l1.next;
+                }
+                else{
+                    System.out.print(l2.val);
+                    newNode = new ListNode(l2.val);
+                    l2 = l2.next;
+                }
+                if(p!=null){
+                    p.next = newNode;
+                    p = newNode;
+                }
+                else{
+                    p = newNode;
+                    p2 = newNode;
+                }
+             }
+            while(l1!=null){
+                ListNode newNode = null;
+                newNode = new ListNode(l1.val);
+                l1 = l1.next;
+                if(p!=null){
+                     p.next = newNode;
+                     p = newNode;
+                }
+                else{
+                    p = newNode;
+                    p2 = newNode;
+                }
+            }
+            while(l2!=null){
+                ListNode newNode = null;
+                newNode = new ListNode(l2.val);
+                 l2 = l2.next;
+                 if(p!=null){
+                    p.next = newNode;
+                    p = newNode;
+                }
+                else{
+                    p = newNode;
+                    p2 = newNode;
+                }
+            }
+            p = null;
+            l1 = p2;
+         }
+         return p2;
+    }
+    
+    public static void main(String agrs[]){
+        Solution2 obj = new Solution2();
+        int n = new Scanner(System.in).nextInt();
+        ListNode lists[] = new ListNode[n];
+        ListNode l1 = new ListNode();
+        for(int i=0;i<n;i++){
+           System.out.println("enter n1");
+          int n1 = new Scanner(System.in).nextInt();
+          l1 = insert(l1, n1);
+          lists[i] = l1;
+        }
+        ListNode temp = obj.mergeKLists(lists);
+        display(temp);
+    
+    }
+}
