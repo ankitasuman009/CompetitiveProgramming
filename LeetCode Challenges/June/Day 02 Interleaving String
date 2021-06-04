@@ -1,0 +1,35 @@
+class Solution {
+    public boolean isInterleave(String s1, String s2, String s3) {
+        if(s1=="" && s2=="" && s3=="") return true;
+        if(s1.length()+s2.length()!=s3.length()) return false;
+         int l1 = 0, l2 = 0;
+        while(s3!=""){
+            int n = 0, m = 0, i = 0;
+            if((l1+n)<s1.length() && i<s3.length()){
+                while(s1.charAt(n+l1)==s3.charAt(n+i)){
+                    n++;
+                    if((l1+n)>=s1.length()) break;
+                }
+            }
+            if((l2+m)<s2.length() && i<s3.length()){
+                while((l2+m)<s2.length() && s2.charAt(m+l2)==s3.charAt(m+i)){
+                    m++;
+                    if((l2+m)>=s2.length()) break;
+                }
+            }
+            if(n>m){
+                s3 = s3.substring(n);
+                l1 += n;
+                i += n;
+            }
+            else if(n<m){
+                s3 = s3.substring(m);
+                l2 += m;
+                i += m;
+            }
+            else if(i!=s3.length() && n==0 && m==0) return false;
+            else break;
+        }
+        return true;
+    }
+}
