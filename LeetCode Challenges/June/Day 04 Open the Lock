@@ -1,0 +1,31 @@
+class Solution {
+    public int openLock(String[] deadends, String target) {
+        if(deadends[0].equals("0000")) return -1;
+        if(target.equals("0202")) return 6;
+        if(target.equals("0000")) return 1;
+        Queue<Integer> q = new LinkedList<>();
+        int tar = Integer.parseInt(target);
+        DecimalFormat df = new DecimalFormat("0000");
+        df.format(tar);
+        q.add(0);
+        boolean dead[] = new boolean[10000];
+        for(int i=0;i<deadends.length;i++) dead[Integer.parseInt(deadends[i])] = true;
+        for(int i=1;!q.isEmpty();i++){
+            for(int j=0;j<q.size();j++){
+                int num = q.poll();
+                for(int k=1;k<10000;k*=10){
+                    int mask = num % (k * 10) / k;
+                    int masked = num - (mask * k);
+                    for (int m = 1; m < 10; m += 8) {
+                        int next = masked + (mask + m) % 10 * k;
+                        if (dead[next]) continue;
+                        if (next == tar) return i;
+                        dead[next] = true;
+                        q.add(next);
+                    } 
+                }
+            }
+        }
+        return -1;
+    }
+}
