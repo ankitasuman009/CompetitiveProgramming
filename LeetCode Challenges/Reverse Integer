@@ -1,0 +1,27 @@
+
+
+import java.util.*;
+
+
+class Solution2 { 
+     
+    public static int reverse(int x) {
+        String str = "", str2 = "";
+        str = String.valueOf(x);
+        for(int i=str.length()-1;i>=0;i--)
+            if(str.charAt(i)!='-') 
+                str2 += str.charAt(i);
+        if(x<0) str2 = '-' + str2;
+        try{
+            int num = Integer.parseInt(str2);
+            return num;
+        }catch(Exception e){
+            return 0;
+        }
+    }
+    
+    public static void main(String agrs[]){
+        System.out.println(reverse(-123));
+    
+    }
+}
