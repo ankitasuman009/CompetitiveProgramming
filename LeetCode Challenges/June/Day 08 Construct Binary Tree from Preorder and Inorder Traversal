@@ -1,0 +1,63 @@
+
+
+import java.util.*;
+
+
+class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; 
+          this.left = null;
+          this.right = null;}
+      TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+      }
+  }
+
+class Solution2 {
+     
+    public static void display(TreeNode temp){
+        if(temp==null) return;
+        System.out.println(temp.val);
+        display(temp.left);
+        display(temp.right);
+    }
+    public static int search(int[] inorder, int num) {
+        for(int k=0;k<inorder.length;k++){
+            if(inorder[k]==num){
+                return k;
+            }
+        }
+        return 0;
+    }
+    
+    static int preIndex = 0;
+    
+    
+    public static TreeNode bst(int[] preorder, int[] inorder, int i, int n) {
+        if(i>n) return null;
+        TreeNode head = new TreeNode(preorder[preIndex++]);
+        if(i==n) return head;
+        int j = search(inorder, head.val);
+        head.left = bst(preorder, inorder, i, j-1);
+        head.right = bst(preorder, inorder, j+1, n);
+        return head;
+    }
+
+    public static TreeNode buildTree(int[] preorder, int[] inorder) {
+        return bst(preorder, inorder, 0, preorder.length-1);
+    }
+    
+    public static void main(String agrs[]){
+        int[] preorder = {3, 9, 20, 15, 7};
+        int[] inorder = {9, 3, 15, 20, 7};
+        TreeNode head = buildTree(preorder, inorder);
+        System.out.print("display");;
+        display(head);
+    
+    }
+}
