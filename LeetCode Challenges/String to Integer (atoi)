@@ -1,0 +1,35 @@
+
+
+import java.util.*;
+
+class Solution2 {
+     
+    public static int myAtoi(String s) {
+        String str = "";
+        for(int i=0;i<s.length();i++){
+            if(str=="" && (s.charAt(i)==' ')) continue;
+            if(str.equals("") && s.charAt(i)=='+') str += s.charAt(i);
+            else if(str.equals("") && s.charAt(i)=='-') str += s.charAt(i);
+            else if((int)s.charAt(i)>=48 && (int)s.charAt(i)<58) str += s.charAt(i);
+            else break;
+        }
+        System.out.print(str);
+        if(str=="" || str.equals("-") || str.equals("+")) return 0;
+        try{
+            int num = Integer.parseInt(str);
+            return num;
+        }catch(Exception e){
+            if(s.charAt(0)=='-')
+                return (-2147483648);
+            else return 2147483647;
+        }
+    }
+    
+    public static void main(String agrs[]){
+        int[] preorder = {3, 9, 20, 15, 7};
+        int[] inorder = {9, 3, 15, 20, 7};
+        System.out.println(myAtoi("+-12"));
+
+    
+    }
+}
