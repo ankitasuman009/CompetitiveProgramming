@@ -1,0 +1,56 @@
+ 
+
+import java.util.*;
+
+
+class TreeNode {
+      TreeNode next;
+      int s, e;
+      TreeNode(TreeNode t, int start, int end) {
+          s = start;
+          e = end;
+          next = t;
+      }
+  }
+
+
+class MyCalendar {
+    TreeNode head, p;
+    public MyCalendar() {
+         TreeNode tail = new TreeNode(null, Integer.MAX_VALUE, Integer.MAX_VALUE);
+        head = new TreeNode(tail, -1, -1);
+    }
+    
+    public boolean book(int start, int end) {
+        TreeNode temp = head, p2 = head;
+        while(start>=temp.e){
+            p2 = temp;
+            temp = temp.next;
+        }
+        if(end>temp.s) return false;
+        p2.next = new TreeNode(temp, start, end);
+        return true;
+        
+    }
+    public void display(){
+        while(head!=null){
+            System.out.println(head.s+"  "+head.e);
+            head = head.next;
+        }
+    }
+ 
+    
+    public static void main(String agrs[]){
+        int n = new Scanner(System.in).nextInt();
+        MyCalendar obj = new MyCalendar();
+        for(int i=0;i<n;i++){
+            int num1 = new Scanner(System.in).nextInt();
+            int num2 = new Scanner(System.in).nextInt();
+            if(obj.book(num1, num2)) System.out.println("true");
+            else System.out.println("false");
+        }
+//obj.display();
+
+    
+    }
+}
