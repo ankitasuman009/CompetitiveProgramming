@@ -1,0 +1,47 @@
+
+import java.util.*;
+
+
+class Solution2 {
+    
+    
+    public static boolean valid(String str, int s, int e){
+        
+//        char str[] = s.toCharArray();
+//        List<Integer> l = new ArrayList<>();
+//        for(int i=0,j=str.length-1;i<j;i++,j--) if(str[i]!=str[j]) return false;
+//        return true;
+
+        if (s == e)
+            return true;
+        if ((str.charAt(s)) != (str.charAt(e)))
+            return false;
+        if (s < e + 1)
+            return valid(str, s + 1, e - 1);
+        return true;
+    }
+    public static List<List<Integer>> palindromePairs(String[] words) {
+        List<List<Integer>> li = new ArrayList<List<Integer>>();
+        for(int i=0;i<words.length;i++){
+            for(int j=0;j<words.length;j++){
+                if(i!=j){
+                    String s = words[i]+words[j];
+                    if(valid(s, 0, s.length()-1)){
+                    List<Integer> l = new ArrayList<>();
+                    l.add(i); l.add(j);
+                    li.add(l);
+                }
+                }
+            }
+        }
+        return li;
+    } 
+    
+    public static void main(String agrs[]){
+        String[] arr = {"abcd", "dcba", "lls", "s", "sssll"};
+        List<List<Integer>> li2 = new ArrayList<List<Integer>>();
+        li2 = palindromePairs(arr);
+        for(List l:li2) System.out.println(l);
+    
+    }
+}
