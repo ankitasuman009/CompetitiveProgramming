@@ -1,0 +1,30 @@
+
+
+import java.util.*;
+
+
+
+class Solution2 { 
+    
+    public static int maximumUnits(int[][] boxTypes, int truckSize) {
+        Arrays.sort(boxTypes, (b, a) -> Integer.compare(a[1], b[1]));
+        if(truckSize==1) return boxTypes[0][1];
+        int max = 0;
+        for(int i=0;i<boxTypes.length;i++){
+                if(truckSize==0) return max;
+                while(truckSize!=0 && boxTypes[i][0]!=0){
+                    max += boxTypes[i][1];
+                    truckSize--;
+                    boxTypes[i][0]--;
+                }
+            }
+        return max;
+    }
+    
+    
+    
+    public static void main(String agrs[]){
+        int[][] boxTypes = {{5,10},{2,5},{4,7},{3,9}};
+        System.out.print(maximumUnits(boxTypes, 10));
+    }
+}
