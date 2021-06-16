@@ -1,0 +1,22 @@
+class Solution {
+    public boolean makesquare(int[] matchsticks) {
+        int peri = 0;
+        for(int a:matchsticks) peri += a;
+        if(peri%4!=0) return false;
+        Arrays.sort(matchsticks);
+        int side = matchsticks[matchsticks.length-1];
+        for(int i=0;i<matchsticks.length-2;i++){
+            if(matchsticks[i]==side) continue;
+            int sum = matchsticks[i];
+            for(int j=i+1;j<matchsticks.length-3;j++){
+                sum += matchsticks[j];
+                if(sum>side) return false;
+                if(sum==side){
+                    i = j - 1;
+                    break;
+                }
+            }
+        }
+        return true;
+    }
+}
