@@ -1,0 +1,40 @@
+
+package first;
+import java.text.DecimalFormat;
+import java.util.*;
+
+
+
+class Solution2 {
+    
+   public static int strStr(String haystack, String needle) {
+       if(needle.length()==0) return 0;
+       if(haystack.length()==0 || needle.length()>haystack.length()) return -1;
+        char[] charArr = needle.toCharArray(); 
+        int j = 0, c = -1;
+        for(int i=0;i<haystack.length();i++){
+            int t = i;
+            if(haystack.length()-i>=needle.length()){
+                while(needle.charAt(j++)==haystack.charAt(t++)){
+                    if(c==-1) c = i;
+                    if(j==needle.length()) return c;
+                }
+            }
+            else break;
+            j = 0; c = -1;
+        }
+        return c;
+    }
+    
+    
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+//        String[] arr = {"flower","flower","flower","flower"};
+        String str1 = "abc", str2 = "c";
+        System.out.println(strStr(str1, str2));
+
+    }
+}
