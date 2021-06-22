@@ -1,0 +1,36 @@
+
+package first;
+import java.text.DecimalFormat;
+import java.util.*;
+
+
+
+class Solution2 {
+    
+   public static int numMatchingSubseq(String s, String[] words) {
+        int c = 0, f = 0;
+        for(int i=0;i<words.length;i++){
+            f = 0;
+            char[] charArr = words[i].toCharArray();
+            int k = 0;
+            for(int j=0;j<s.length();j++){
+                if(s.charAt(j)!=charArr[k]) continue;
+                k++;
+                if(k==charArr.length){ f = 1; break;}
+            }
+            if(f==1) c++;
+        }
+        return c;
+    }
+    
+    
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+        String[] arr = {"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"};
+        String str1 = "dsahjpjauf", str2 = "c";
+        System.out.println(numMatchingSubseq(str1, arr));
+    }
+}
