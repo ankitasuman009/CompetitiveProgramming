@@ -8,17 +8,23 @@ import java.util.*;
 class Solution2 {
     
    public static int numMatchingSubseq(String s, String[] words) {
+        HashMap<String, Integer> hm = new HashMap<>();
         int c = 0, f = 0;
         for(int i=0;i<words.length;i++){
-            f = 0;
-            char[] charArr = words[i].toCharArray();
-            int k = 0;
-            for(int j=0;j<s.length();j++){
-                if(s.charAt(j)!=charArr[k]) continue;
-                k++;
-                if(k==charArr.length){ f = 1; break;}
+            if(!hm.containsKey(words[i])){ 
+                f = 0;
+                char[] charArr = words[i].toCharArray();
+                int k = 0;
+                for(int j=0;j<s.length();j++){
+                    if(s.charAt(j)!=charArr[k]) continue;
+                    k++;
+                    if(k==charArr.length){ f = 1; break;}
+                }
+                if(f==1){
+                    hm.put(words[i], 1); c++;
+                }
             }
-            if(f==1) c++;
+            else c++;
         }
         return c;
     }
