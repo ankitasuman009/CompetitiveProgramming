@@ -1,0 +1,31 @@
+
+package first;
+import java.text.DecimalFormat;
+import java.util.*;
+
+
+
+class Solution2 {
+    
+    public static int candy(int[] ratings) {
+        if(ratings.length==0) return 0;
+        if(ratings.length==1) return 1;
+        int sum = 0;
+        int[] candy = new int[ratings.length];
+        Arrays.fill(candy, 1);
+        for(int i=1;i<ratings.length;i++) if(ratings[i]>ratings[i-1]) candy[i] = candy[i-1] + 1;
+        for(int i=ratings.length-2;i>=0;i--) if(ratings[i]>ratings[i+1]) candy[i] = Math.max(candy[i], candy[i+1]+1);
+        for(int e:candy) sum += e;
+        return sum;
+    }
+    
+    
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+        int[] arr = {1,2,4,4,4,3};
+        System.out.println(candy(arr));
+    }
+}
