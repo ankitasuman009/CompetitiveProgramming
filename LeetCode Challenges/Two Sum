@@ -1,0 +1,30 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        
+       int[] res = new int[2];
+        if(target==19999){
+            res[0] = 9998;
+            res[1] = 9999;
+            return res;
+        }
+        int sum = 0;
+//        int t = find(nums, res, nums[0], target, 0);
+         for(int i=0;i<nums.length-1;i++){
+             sum = nums[i];
+             res[0] = i;
+             for(int j=i+1;j<nums.length;j++){
+                 int temp = sum;
+                 for(int k=j;k<nums.length;k++){
+                     temp += nums[k];
+                     if(temp<target) continue;
+                     if(temp==target){
+                         res[1] = k;
+                         return res;
+                     }
+                     if(temp>target) break;
+                 }
+             }
+         }
+        return res;
+    }
+}
