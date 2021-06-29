@@ -1,0 +1,67 @@
+
+package first;
+import java.util.*;
+
+class ListNode {
+      int val;
+      ListNode next;
+      ListNode() {}
+      ListNode(int val) { this.val = val; }
+      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+  }
+
+
+class Solution2 {
+    
+    
+    public static ListNode swapPairs(ListNode head) {
+        int arr[] = new int[100];
+        int n = 0;
+        ListNode t = head, p1 = null, p2 = null;
+        while(t!=null){
+            arr[n++] = t.val;
+            t = t.next;
+        }
+        if(n==0) return null;
+        if(n==1) return head;
+        for(int i=1;i<n;i+=2){
+            System.out.println("arr = "+arr[i]);
+            ListNode newNode = new ListNode(arr[i]);
+            if(p1==null){
+                p1 = newNode;
+                p2 = newNode;
+            }
+            p2.next = newNode;
+            p2 = newNode;
+            ListNode newNode2 = new ListNode(arr[i-1]);
+            p2.next = newNode2;
+            p2 = newNode2;
+        }
+        if(n%2!=0) p2.next = new ListNode(arr[n-1]);
+        return p1;
+    
+    }
+    
+    
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+        int n = new Scanner(System.in).nextInt();
+        ListNode head = null, p = null;
+        for(int i=0;i<n;i++){
+            int num = new Scanner(System.in).nextInt();
+            ListNode newNode = new ListNode(num);
+            if(head==null) head = newNode;
+            if(p!=null) p.next = newNode;
+            p = newNode;
+        }
+        ListNode temp = swapPairs(head);
+        
+        while(temp!=null){
+            System.out.println(temp.val);
+            temp = temp.next;
+        }
+
+    }
+}
