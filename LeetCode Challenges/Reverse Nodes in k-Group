@@ -1,0 +1,67 @@
+
+package first;
+import java.util.*;
+
+class ListNode {
+      int val;
+      ListNode next;
+      ListNode() {}
+      ListNode(int val) { this.val = val; }
+      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+  }
+
+
+class Solution2 {
+    
+    
+    public static ListNode reverseKGroup(ListNode head, int k) {
+        int[] arr = new int[5000];
+        ListNode temp = head, p1 = null, p2 = null;
+        int n = 0;
+        while(temp!=null) {
+            arr[n++] = temp.val;
+            temp = temp.next;
+        }
+        int t = 0;
+        for(int i=k-1;i<n;i+=k){
+            int c = k;
+            int j = i;
+            t = i;
+            while(c!=0){
+                c--;
+                ListNode newNode = new ListNode(arr[j--]);
+                if(p1==null) p1 = newNode;
+                if(p2!=null) p2.next = newNode;
+                p2 = newNode;
+            }
+        }
+        while(t!=n-1){
+            ListNode newNode = new ListNode(arr[++t]);
+            p2.next = newNode;
+            p2 = newNode;
+        }
+        return p1;
+    }
+    
+    
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+        int n = new Scanner(System.in).nextInt();
+        ListNode head = null, p = null;
+        for(int i=0;i<n;i++){
+            int num = new Scanner(System.in).nextInt();
+            ListNode newNode = new ListNode(num);
+            if(head==null) head = newNode;
+            if(p!=null) p.next = newNode;
+            p = newNode;
+        }
+        ListNode temp = reverseKGroup(head, 3);
+        
+        while(temp!=null){
+            System.out.println(temp.val);
+            temp = temp.next;
+        }
+    }
+}
