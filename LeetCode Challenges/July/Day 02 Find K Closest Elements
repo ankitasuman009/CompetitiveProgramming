@@ -1,0 +1,56 @@
+
+package first;
+import java.util.*;
+
+class Pair{
+    int x, y;
+    Pair(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+}
+
+
+
+class Solution2 {
+    
+    
+    public static List<Integer> findClosestElements(int[] arr, int k, int x) {
+        List<Integer> li = new ArrayList<>();
+        PriorityQueue<Pair> pri = new PriorityQueue<>(new Comparator<Pair>(){
+            @Override
+            public int compare(Pair p, Pair q){
+                if(p.y==q.y) return Integer.compare(p.x, q.x);
+                return Integer.compare(p.y, q.y);
+            }
+            });
+        for(int i=0;i<arr.length;i++){
+            pri.add(new Pair(arr[i], Math.abs(arr[i]-x)));
+        }
+        int[] arr2 = new int[k];
+        int n = 0;
+        while(!pri.isEmpty() && k!=0){ 
+            k--;
+            arr2[n++] = pri.poll().x;
+        }
+            
+        Arrays.sort(arr2);
+        for(int a: arr2) li.add(a);
+        return li;
+
+}
+    
+    
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+          int[] arr = {1, 2, 3, 4, 5};
+          List<Integer> li = findClosestElements(arr, 4, 3);
+
+          for(int l: li)
+            System.out.println(l);
+
+    }
+}
