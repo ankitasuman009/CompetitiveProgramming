@@ -1,0 +1,42 @@
+
+package first;
+import java.util.*;
+
+
+class Solution2 {
+    
+    public static int minSetSize(int[] arr) {
+        PriorityQueue<Integer> pri = new PriorityQueue<>(new Comparator<Integer>(){
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                 return Integer.compare(o2, o1);
+            }
+        });
+       HashMap<Integer, Integer> hm = new HashMap<>();
+       for(int a: arr){
+           if(hm.containsKey(a)) hm.put(a, (int)hm.get(a)+1);
+           else hm.put(a, 1);
+       }
+       if(hm.size()==1) return 1;
+       hm.entrySet().forEach((e) -> {
+//           System.out.println(e.getKey()+ " " +e.getValue());
+           pri.add((int)e.getValue());
+        });
+
+       int sum = 0, c = 0;
+       while(!pri.isEmpty()) {
+           c++; sum += pri.poll();
+           if(sum>=(arr.length/2)) return c;
+       }
+       return -1;
+    }
+    
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+        int[] arr = {9,77,63,22,92,9,14,54,8,38,18,19,38,68,58,19};
+        System.out.println(minSetSize(arr));
+    }
+}
