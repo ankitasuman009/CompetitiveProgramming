@@ -1,0 +1,32 @@
+
+package first;
+import java.util.*;
+
+
+class Solution2 {
+    
+    
+    public static int kthSmallest(int[][] matrix, int k) {
+        if(matrix.length==1 && matrix[0].length==1 && k==1) return matrix[0][0];
+        PriorityQueue<Integer> pri = new PriorityQueue<>((a, b) -> Integer.compare(a, b));
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[i].length;j++) pri.add(matrix[i][j]);
+        }
+        while(!pri.isEmpty() && k!=1){
+            k--; pri.poll();
+        }
+//        System.out.println(k);
+        return pri.poll();
+    }
+    
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+        int[][] arr = {{1,5,9},
+            {10,11,13},
+            {12,13,15}};
+        System.out.println(kthSmallest(arr, 8));
+    }
+}
