@@ -1,0 +1,59 @@
+
+package first;
+import java.util.*;
+
+class Solution2 {
+    
+    List<Integer> li;
+    static int n;
+    public Solution2() {
+        li = new ArrayList<>();
+        n = 0;
+    }
+    
+    public void addNum(int num) {
+        int i = 0;
+        while(i<li.size() && li.get(i)<num) i++;
+        li.add(i, num);
+        n++;
+    }
+    
+    public double findMedian() {
+        if(n%2==0){
+          return ((li.get((n/2)-1)+li.get(n/2))/2.0);  
+        } 
+        return li.get(n/2);
+    }
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+
+Solution2 obj = new Solution2();
+obj.addNum(6);
+System.out.println(obj.findMedian());
+obj.addNum(10);
+System.out.println(obj.findMedian());
+obj.addNum(2);
+System.out.println(obj.findMedian());
+obj.addNum(6);
+System.out.println(obj.findMedian());
+obj.addNum(5);
+System.out.println(obj.findMedian());
+obj.addNum(0);
+System.out.println(obj.findMedian());
+obj.addNum(6);
+System.out.println(obj.findMedian());
+obj.addNum(3);
+System.out.println(obj.findMedian());
+obj.addNum(1);
+System.out.println(obj.findMedian());
+obj.addNum(0);
+System.out.println(obj.findMedian());
+obj.addNum(0);
+System.out.println(obj.findMedian());
+//["MedianFinder","","","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian","addNum","findMedian"]
+//[[],[6],[],[10],[],[2],[],[6],[],[5],[],[0],[],[6],[],[3],[],[1],[],[0],[],[0],[]]
+    }
+}
