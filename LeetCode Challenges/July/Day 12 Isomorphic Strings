@@ -1,0 +1,34 @@
+
+package first;
+import java.util.*;
+
+
+
+class Solution2 {
+    
+    static HashMap<Character, Character> hm = new HashMap<>();
+    
+    public static Character change(Character c) {
+        if(!hm.containsKey(c)) {
+            hm.put(c, (char)(97+hm.size()));
+        }
+        return hm.get(c);
+    }
+    
+    public static boolean isIsomorphic(String s, String t) {
+        if(s.length()!=t.length()) return false;
+        String str1 = "", str2 = "";
+        for(int i=0;i<s.length();i++) str1 += change(s.charAt(i));
+        hm.clear();
+        for(int i=0;i<t.length();i++) if(str1.charAt(i)!=change(t.charAt(i))) return false;
+        return true;
+    }
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+        if(isIsomorphic("foo", "bar")) System.out.println("True");
+        else System.out.print("false");
+    }
+}
