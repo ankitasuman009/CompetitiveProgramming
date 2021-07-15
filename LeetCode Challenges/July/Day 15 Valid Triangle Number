@@ -1,0 +1,35 @@
+
+package first;
+import java.util.*;
+
+
+
+class Solution2 {
+    
+    public static int triangleNumber(int[] nums) {
+        int c = 0;
+        Arrays.sort(nums);
+       for(int i=2;i<nums.length;i++){
+           int s = 0, e = i-1;
+           while(s<e){
+            if((nums[s]+nums[e])>nums[i]){
+                c += e-s;
+                e--;
+            }
+            else s++;
+       }
+           
+       } 
+       return c;
+    }
+
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+        int[] arr1 = {4, 2, 3, 4};
+      System.out.println(triangleNumber(arr1));
+
+    }
+}
