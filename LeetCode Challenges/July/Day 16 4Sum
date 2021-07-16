@@ -1,0 +1,52 @@
+
+package first;
+import java.util.*;
+
+
+
+class Solution2 {
+    
+    
+     public static List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> li = new ArrayList<List<Integer>>();
+        
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length-1;i++){
+            for(int j=i+1;j<nums.length;j++){
+                List<Integer> l = new ArrayList<>();
+                int s = j+1, e = nums.length-1;
+                int newTarget = target - nums[i] - nums[j];
+                while(s<e){
+                    if(nums[s]+nums[e]==newTarget){
+                        l.add(nums[i]); l.add(nums[j]); l.add(nums[s]); l.add(nums[e]);
+                    int third = nums[s], fourth = nums[e];
+                    
+                    while(s<e && nums[s]==third) s++;
+                    while(s<e && nums[e]==fourth) e--;
+                    }
+                    else if(nums[s]+nums[e]>newTarget) e--;
+                    else s++;
+                }
+                
+                while(j+1<nums.length && nums[j+1]==nums[j]) j++;
+                while(i+1<nums.length && nums[i+1]==nums[i]) i++;
+                if(l.size()==4) li.add(l);
+            }
+        }
+        return li;
+    }
+
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+        int[] arr1 = {-3,-2,-1,0,0,1,2,3};
+        List<List<Integer>> li2 = fourSum(arr1, 0);
+        for(List<Integer> l:li2){
+          for(int i: l)
+            System.out.print((i));
+          System.out.println();
+        }
+    }
+}
