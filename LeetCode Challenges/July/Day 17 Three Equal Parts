@@ -1,0 +1,39 @@
+
+package first;
+import java.util.*;
+
+
+class Solution2 {
+    
+     public static int[] threeEqualParts(int[] arr) {
+        int[] res = new int[arr.length], ans = new int[2];
+        ans[0] = -1; ans[1] = -1;
+        int n = 0;
+        for(int i=0;i<arr.length;i++) if(arr[i]==1) res[n++] = i;
+        if(n==0){
+            ans[0] = 0; ans[1] = arr.length-1;
+        }
+        else if(n%3==0) {
+            int s = res[(n/3)*0], m = res[(n/3)*1], e = res[(n/3)*2];
+            while(e<arr.length && arr[s]==arr[m] && arr[m]==arr[e]){
+                s++; m++; e++;
+            }
+            if(e>=arr.length){
+                ans[0] = s-1; ans[1] = m;
+            }
+        }
+        
+        return ans;
+    }
+
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+        int[] arr1 = {1, 1, 0, 0, 1};
+        int[] temp = threeEqualParts(arr1);
+        for(int i: temp)
+          System.out.println(i);
+        }
+}
