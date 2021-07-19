@@ -1,0 +1,57 @@
+
+package first;
+import java.util.*;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
+}
+
+
+class Solution2 {
+    
+    public static TreeNode make(TreeNode root, int num){
+        TreeNode p = root, q = root;
+        while(p!=null){
+            q = p;
+            if(num<p.val) p = p.left;
+            else p = p.right;
+        }
+        if(num<q.val)
+            q.left = new TreeNode(num);
+        else q.right = new TreeNode(num);
+        return root;
+    }
+    
+    
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    
+        if(root==null || root.val==p.val|| root.val==q.val) return root;
+        TreeNode l = lowestCommonAncestor(root.left, p, q);
+        TreeNode r = lowestCommonAncestor(root.right, p, q);
+        if(l==null) return r;
+        if(r==null) return l;
+        return root;
+    }
+    
+    public static void display(TreeNode t){
+        if(t==null) return;
+        System.out.println(t.val);
+        display(t.left);    
+        display(t.right);
+    }
+
+    
+    
+    public static void main(String agrs[]){
+//        Solution2 obj = new Solution2();
+//        int n = new Scanner(System.in).nextInt();
+    int n = new Scanner(System.in).nextInt();
+    TreeNode root = new TreeNode(new Scanner(System.in).nextInt());
+    for(int i=0;i<n;i++) root = make(root, new Scanner(System.in).nextInt());
+    System.out.println(lowestCommonAncestor(root, new TreeNode(2), new TreeNode(1)).val);
+
+    }
+}
