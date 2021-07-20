@@ -1,0 +1,76 @@
+
+package first;
+import static java.lang.System.exit;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
+
+
+class Solution2 {
+    
+    public int[] arr;
+    public static int i = 0;
+    public Solution2(int[] nums) {
+        arr = nums;
+    }
+    
+    /** Resets the array to its original configuration and return it. */
+    public int[] reset() {
+        return arr;
+    }
+    
+    /** Returns a random shuffling of the array. */
+    public int[] shuffle() {
+        int[] arr2 = new int[arr.length];
+        List li = new ArrayList<>();
+        int n = arr2.length;
+        int k = 0;
+        while(k<arr.length){
+            int j = ThreadLocalRandom.current().nextInt(0, n);
+            if(li.contains(j)) continue;
+            li.add(j);
+            System.out.println("j = "+j);
+            arr2[k++] = arr[j];
+        }
+        return arr2;
+    }
+
+    
+    
+    public static void main(String agrs[]){
+//        int n = new Scanner(System.in).nextInt();
+        
+//        int[] arr2 = {3, 2, 1, 4, 7};
+//        for(int i=1;i<=n;i++){
+//            arr[i] = new Scanner(System.in).nextInt();
+//        }
+
+//    int n = new Scanner(System.in).nextInt();
+//    TreeNode root = new TreeNode(new Scanner(System.in).nextInt());
+//    for(int i=0;i<n;i++) root = make(root, new Scanner(System.in).nextInt());
+
+
+//        int[][] boxTypes = {{5,10},{2,5},{4,7},{3,9}};
+//        if(makesquare(arr1)) System.out.print("yes");
+//        else System.out.print("no");
+
+
+        int[] arr1 = {1, 2, 3};
+        int[] temp = new int[arr1.length];
+        Solution2 obj = new Solution2(arr1);
+        while(true){
+        System.out.println("choose ");
+        int choose = new Scanner(System.in).nextInt();
+            switch(choose){
+                case 1: temp = obj.reset();
+                    break;
+                case 2: temp = obj.shuffle();
+                    break;
+                case 3: exit(0);
+            }
+            System.out.println("temp -");
+            for(int t:temp) System.out.print(t+" ");
+            System.out.println("\n");
+        }
+    }
+}
