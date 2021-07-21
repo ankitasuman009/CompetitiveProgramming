@@ -1,0 +1,44 @@
+
+package first;
+import java.util.*;
+
+
+class Solution2 {
+    
+    public static String pushDominoes(String dominoes) {
+        String str = "";
+        char[] c = dominoes.toCharArray();
+        int n = c.length, f = 0;
+        int[] ans = new int[c.length];
+        for(int i=0;i<n;i++){
+            if(c[i]=='R') f = n;
+            else if(c[i]=='L') f = 0;
+            else f = Math.max(f-1, 0);
+            ans[i] += f;
+        }
+        for(int i=n-1;i>=0;i--){
+            if(c[i]=='L') f = n;
+            else if(c[i]=='R') f = 0;
+            else f = Math.max(f-1, 0);
+            ans[i] -= f;
+        }
+        
+        for(int a:ans) str += a<0?"L":a>0?"R":".";
+        
+        return str;
+    }
+
+    
+    
+    public static void main(String agrs[]){
+//        int n = new Scanner(System.in).nextInt();
+        
+//        int[] arr2 = {3, 2, 1, 4, 7};
+//        for(int i=1;i<=n;i++){
+//            arr[i] = new Scanner(System.in).nextInt();
+//        }
+
+System.out.println(pushDominoes("RR.L"));
+
+    }
+}
