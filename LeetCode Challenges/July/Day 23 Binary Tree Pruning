@@ -1,0 +1,58 @@
+
+package first;
+import static java.lang.System.exit;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+      }
+ }
+
+
+class Solution2 {
+    
+    public static TreeNode make(TreeNode root, int num) {
+//        TreeNode root = temp;
+        if(root==null) root = new TreeNode(num);
+        else if (root.left != null) root.left = make(root.left, num);
+            
+            else    root.right = make(root.right, num);
+
+    }
+    
+    public static void display(TreeNode t){
+        if(t==null) return;
+        System.out.println(t.val);
+        display(t.left);
+        display(t.right);
+    }
+    
+    public static TreeNode pruneTree(TreeNode root) {
+        if(root==null) return null;
+        root.left = pruneTree(root.left);
+        root.right = pruneTree(root.right);
+        if(root.val==0 && root.right==null && root.left==null) return null;
+        return root;
+    }
+
+    
+    
+    public static void main(String agrs[]){
+    int n = new Scanner(System.in).nextInt();
+    TreeNode root = new TreeNode(new Scanner(System.in).nextInt());
+    for(int i=0;i<n;i++) root = make(root, new Scanner(System.in).nextInt());
+    System.out.println("elements ");
+    display(root);
+    System.out.println("elements ");
+    display(pruneTree(root));
+    }
+}
