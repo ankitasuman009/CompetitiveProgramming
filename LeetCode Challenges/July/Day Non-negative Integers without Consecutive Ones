@@ -1,0 +1,53 @@
+M1 - 
+class Solution {
+    public int findIntegers(int n) {
+        if(n<3) return n+1;
+        int c = 1;
+        int j = 0;
+        Queue<String> q = new LinkedList<>();
+        q.add("1");
+        while(j!=n){
+            String s1 = q.poll();
+            int f = 0;
+            String s2 = s1;
+            q.add(s1 + "0");
+            q.add(s2 + "1");j++;
+            for(int i=1;i<s1.length();i++){
+                if(s1.charAt(i-1)=='1' && s1.charAt(i-1)==s1.charAt(i)){
+                    f = 1;
+                    break;
+                }
+            }
+            if(f==0)c++;
+        }
+        return c;
+    }
+}
+
+
+M2 - 
+
+class Solution {
+    public int findIntegers(int n) {
+        if(n<3) return n+1;
+        int c = 1;
+        int j = 0;
+        Queue<String> q = new LinkedList<>();
+        q.add("1");
+        while(j!=n){
+            String s1 = q.poll();
+            int f = 0;
+            String s2 = s1;
+            q.add(s1 + "0");
+            q.add(s2 + "1");j++;
+            for(int i=1;i<s1.length();i++){
+                if(s1.charAt(i-1)=='1' && s1.charAt(i-1)==s1.charAt(i)){
+                    f = 1;
+                    break;
+                }
+            }
+            if(f==0)c++;
+        }
+        return c;
+    }
+}
