@@ -1,0 +1,77 @@
+
+package first;
+import static java.lang.System.exit;
+import java.util.*;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+
+class Solution2 {
+    
+    public static TreeNode make(TreeNode root, int num){
+        if(root==null) return new TreeNode(num);
+        if(num<root.val) root.left = make(root.left, num);
+        else if(num>root.val) root.right = make(root.right, num);
+        return root;
+    }
+    
+    public static void display(TreeNode root){
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            TreeNode temp = q.poll();
+            System.out.println(temp.val);
+            if(temp.left!=null) q.add(temp.left);
+            if(temp.right!=null) q.add(temp.right);
+        }
+//        if(root==null) return;
+//        System.out.println(root.val);
+//        display(root.left);
+//        display(root.right);
+    }
+    
+    
+    public static TreeNode bst(TreeNode root, int nums[], int i, int j){
+        int mid = (i+j)/2;
+        if(i>=j) return root;
+        root = make(root, nums[mid]);
+        bst(root, nums, i, mid);
+        bst(root, nums, mid+1, j);
+        return root;
+    }
+    
+    public static TreeNode sortedArrayToBST(int[] nums) {
+//       int mid = nums.length/2;
+//        TreeNode root = new TreeNode(nums[mid]);
+        return bst(null, nums, 0, nums.length);
+//        for(int i=0;i<mid;i++) root = make(root, nums[i]);
+//        for(int i=mid+1;i<nums.length;i++) root = make(root, nums[i]);
+//        return root;
+    }
+    
+
+    
+    
+    public static void main(String agrs[]){      
+        int[] arr2 = {1, 3, 4, 5, 6, 8, 9};
+//    int n = new Scanner(System.in).nextInt();
+//    TreeNode root = new TreeNode(new Scanner(System.in).nextInt());
+//    for(int i=0;i<n;i++) root = make(root, new Scanner(System.in).nextInt());
+//    System.out.println("elements ");
+//    display(root);
+    
+    System.out.println("elements ");
+    display(sortedArrayToBST(arr2));
+    }
+}
