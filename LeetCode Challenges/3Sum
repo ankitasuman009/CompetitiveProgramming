@@ -1,0 +1,49 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+class Solution2 {
+    
+    public static List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> li = new ArrayList<List<Integer>>();
+        
+        Arrays.sort(nums);
+        for(int i: nums) System.out.print(i+" ");
+        for(int i=0;i<nums.length-2;i++){
+            int j = i + 1, k = nums.length - 1;
+            List<Integer> sum = new ArrayList<>();
+            while(j<k){
+                if(nums[k]<0) break;
+                System.out.println("i = "+i+" j = "+j+" k = "+k);
+                int temp = nums[i] + nums[j] + nums[k];
+                if(temp==0){
+                    li.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                    while(j<k && nums[j]==nums[++j]);
+                    while(j<k && nums[k]==nums[--k]);
+                }
+                else if(temp>0) k--;
+                else j++;
+            }int initial = nums[i];
+            while(i<nums.length-2 && nums[i+1]==initial) i++;
+        }
+        return li;
+    }
+    
+
+    
+    
+    public static void main(String agrs[]){
+//        int n = new Scanner(System.in).nextInt();
+        
+    int[] arr2 = {-1, 0, 1, 2, -1, -4};
+    List<List<Integer>> li = (threeSum(arr2));
+    for(List<Integer> l:li){
+        System.out.println();
+        for(int i: l)
+            System.out.print(i+" ");
+    }
+    }
+}
