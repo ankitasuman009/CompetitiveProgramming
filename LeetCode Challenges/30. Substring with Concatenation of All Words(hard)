@@ -1,0 +1,67 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+class Solution2 {
+    
+    
+    public static List<Integer> findSubstring(String s, String[] words) {
+        List<Integer> li = new ArrayList<>();
+        HashMap<String, Integer> hm = new HashMap<>();
+        for(String str:words) if(hm.containsKey(str)) hm.put(str, (int)hm.get(str)+1);
+        else hm.put(str, 1);
+        
+        for(int l=0;l<s.length()-(words[0].length()*words.length)+1;l++){
+            String check = s.substring(l, l + words[0].length());
+            if(hm.containsKey(check)) {
+                
+                
+//            System.out.println(check);
+                String str[] = new String[words.length];
+                int j = 0;
+                for(int i=l;j<words.length;i+=words[0].length()) {
+                    str[j++] = s.substring(i, i + words[0].length());
+//                    System.out.print(str[j-1]+"  ");
+                }
+                for(int i=0;i<str.length-words.length+1;i++){
+                    int f = 0;
+                    if(hm.containsKey(str[i])){
+                        HashMap<String, Integer> hm2 = (HashMap<String, Integer>) hm.clone();
+                        hm2.put(str[i], (int)hm.get(str[i])-1);
+                
+                        for(int k=i+1;k<words.length+i;k++) {
+//                    System.out.println(str[k]);
+                            if(hm2.containsKey(str[k]) && (int)hm2.get(str[k])==0){
+                                f = 1; break;
+                            }else if(!hm2.containsKey(str[k])){
+                                f = 1; break;
+                            }
+                            hm2.put(str[k], (int)hm2.get(str[k])-1);
+                        }
+//                        for(Map.Entry e: hm2.entrySet()) System.out.println(e.getKey()+" "+e.getValue());
+//                        System.out.println();
+                        if(f==0) li.add(l);
+                    }
+                }
+            }
+        }
+        return li;
+    }
+    
+
+    
+    
+    public static void main(String agrs[]){
+//        int n = new Scanner(System.in).nextInt();
+        
+String str[] = {"fooo","barr","wing","ding","wing"};
+
+List<Integer> li = findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", str);
+        for(int i: li)
+            System.out.print(i+" ");
+
+    }
+}
