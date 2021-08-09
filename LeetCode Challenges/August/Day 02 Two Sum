@@ -1,0 +1,33 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+class Solution2 {
+    
+    public static int[] twoSum(int[] nums, int target) {
+        int[] ans = new int[2];
+        for(int i=0;i<nums.length;i++){
+            int newTarget = target - nums[i];
+            for(int j=0;j<nums.length;j++){
+                if(i==j)continue;
+                if(nums[j]==newTarget){
+                    ans[0] = i; ans[1] = j;
+                    return ans;
+                }
+            }
+            
+        }
+        return ans;
+    }
+
+    
+    
+    public static void main(String agrs[]){
+      int[] arr1 = {3, 3};
+      int[] arr = twoSum(arr1, 6);
+      for(int a:arr) System.out.println(a);
+    }
+}
