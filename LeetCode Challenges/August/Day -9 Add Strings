@@ -1,0 +1,42 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+
+class Solution2 {
+    
+    public static String addStrings(String num1, String num2) {
+        String str = "";
+        if(num2.length()>num1.length()){
+            String temp = num1;
+            num1 = num2;
+            num2 = temp;
+        }
+        int j = num1.length() - 1;
+        int c = 0;
+        for(int i=num2.length()-1;i>=0;i--){
+            int t  = ((int)(num1.charAt(j--)-'0') + (int)(num2.charAt(i)-'0')) + c;
+            str = (t % 10) + str; 
+            c = t/10;
+        }
+        while(j>=0){
+            int t = (int)(num1.charAt(j--)-'0') + c;
+            str = (t%10) + str;
+            c = t/10;
+        }
+        if(c!=0) str = c + str;
+        return str;
+    }
+
+    
+    
+    public static void main(String agrs[]){
+//        int n = new Scanner(System.in).nextInt();
+        
+        System.out.println(addStrings("9", "99"));
+
+    }
+}
