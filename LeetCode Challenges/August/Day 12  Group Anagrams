@@ -1,0 +1,44 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+class Solution2 {
+    
+ public static List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> li = new ArrayList<List<String>>();
+        
+        HashMap<String, List<String>> hm = new HashMap<>();
+        for(int i=0;i<strs.length;i++){
+            char[] charArr = strs[i].toCharArray();
+            Arrays.sort(charArr);
+            String str = String.valueOf(charArr);
+            if(hm.containsKey(str)){
+                List<String> l = hm.get(str);
+                l.add(strs[i]);
+                hm.put(str, l);
+            }
+            else{
+                List<String> l = new ArrayList<>();
+                l.add(strs[i]);
+                hm.put(str, l);
+            }
+        }
+        for(Map.Entry e: hm.entrySet()) li.add((List)e.getValue());
+        return li;
+    }
+
+    
+    
+    public static void main(String agrs[]){
+    String str[] = {"eat", "tea", "tan", "ate", "nat", "bat"};
+    List<List<String>> li = groupAnagrams(str);
+    for(List<String> l:li){
+        System.out.println();
+        for(String i: l)
+            System.out.print(i+" ");
+    }
+    }
+}
