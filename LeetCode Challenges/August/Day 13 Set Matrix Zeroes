@@ -1,0 +1,45 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+class Solution2 {
+  public static void setZeroes(int[][] matrix) {
+       int r = matrix.length;
+       int c = matrix[0].length;
+       int f = 0;
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[i].length;j++){
+                if(matrix[i][j]==0){
+                    f = 1;
+                    for(int k=0;k<r;k++) {
+                        if(matrix[k][j]==0) continue;
+                        matrix[k][j] = -1;
+                    }
+                    for(int k=0;k<c;k++) {
+                        if(matrix[i][k]==0) continue;
+                        matrix[i][k] = -1;
+                    }
+                }
+            }
+        }
+        if(f==1)
+        for(int i=0;i<matrix.length;i++)
+            for(int j=0;j<matrix[i].length;j++)
+                if(matrix[i][j]<0) matrix[i][j] = 0;
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[i].length;j++)
+                System.out.print(matrix[i][j]+" ");
+            System.out.println();
+        }
+    }
+
+    
+    
+    public static void main(String agrs[]){
+        setZeroes(arr2);
+
+    }
+}
