@@ -1,0 +1,41 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+class Solution2 {
+    
+   public static void heapify(int[] arr, int i, int n) {
+       if(i<0) return ;
+       int l = 2 * i + 1;
+       int r = 2 * i + 2;
+       int max = i;
+       if(l<n && arr[l]>arr[max]) max = l;
+       if(r<n && arr[r]>arr[max]) max = r;
+       
+       
+       if(max!=i){ 
+           int temp = arr[i];
+           arr[i] = arr[max];
+           arr[max] = temp;
+       }
+       heapify(arr, i-1, n);
+    }
+   
+    
+   public static void setZeroes(int[] arr) {
+       for(int i=0;i<arr.length/2;i++)
+           heapify(arr, i, arr.length);
+       for(int i=0;i<arr.length;i++) System.out.println(arr[i]);
+    }
+
+    
+    
+    public static void main(String agrs[]){
+        int[] arr1 = {4, 10, 3, 5, 1};
+        setZeroes(arr1);
+
+    }
+}
