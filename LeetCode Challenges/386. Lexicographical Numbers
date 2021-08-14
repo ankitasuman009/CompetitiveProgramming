@@ -1,0 +1,25 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+class Solution2 {
+    
+   public static List<Integer> lexicalOrder(int n) {
+        List<String> v = new ArrayList<>();
+        List<Integer> li = new ArrayList<>();
+        for(int i=1;i<=n;i++) v.add(String.valueOf(i));
+        Collections.sort(v);
+        for(int i=0;i<n;i++) li.add(Integer.valueOf(v.get(i)));
+        return li;
+    }
+   
+    
+    public static void main(String agrs[]){
+        List<Integer> li = lexicalOrder(13);
+        for(int i: li)
+            System.out.print(i+" ");
+    }
+}
