@@ -1,0 +1,55 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+
+class Solution2 {
+    
+   public static String minWindow(String s, String t) {
+       if(s.length()<t.length()) return "";
+        if(s.length()==t.length() && s.length()==1){
+            if(s.charAt(0)==t.charAt(0)) return s;
+            else return "";
+        }
+        String str = s;
+        int f = 0;
+        char[] s2 = s.toCharArray();
+        char[] t2 = t.toCharArray();
+        HashMap<Character, Integer> hm = new HashMap<>();
+        HashMap<Character, Integer> hm2 = new HashMap<>();
+        for(int i=0;i<t2.length;i++) hm.put(t2[i], 1);
+        int i=0;
+        for(;i<s2.length;i++){
+            String str2 = "";
+            
+            hm2 = (HashMap<Character, Integer>) hm.clone();
+            if(hm2.containsKey(s2[i])) {
+                f = 1;
+                hm2.remove(s2[i]);
+                str2 += s2[i];
+                if(hm2.size()!=0){
+                    for(int j=i+1;j<s2.length;j++){
+                        str2 += s2[j];
+                        if(hm2.containsKey(s2[j])){
+                            hm2.remove(s2[j]);
+                            if(hm2.size()==0){
+                                 break;
+                            }
+                        }
+                    }
+                }
+            }
+            if(hm2.size()==0 && str2.length()<str.length()) str = str2;
+        }
+        if(f==0) return "";
+        return str;
+    }
+   
+    
+    public static void main(String agrs[]){
+          System.out.print(minWindow("abc", "cba"));
+    }
+}
