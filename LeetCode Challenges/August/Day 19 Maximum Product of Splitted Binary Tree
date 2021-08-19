@@ -1,0 +1,78 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+
+class Solution2 {
+    
+  public static int sum(TreeNode root) {
+      if(root==null) return 0;
+      return sum(root.left) + sum( root.right) + root.val;
+    }  
+  
+  static long max = 0, total_sum = 0;
+  
+  public static long prune(TreeNode root) {
+      // if(root==null)
+      //   return;
+      // if(root.left!=null) {
+      //     long sub_tree = sum(root.left);
+      //     max = Math.max((total_sum - sub_tree)*sub_tree, max);
+      // }
+      // if(root.right!=null)  {
+      //     int sub_tree = sum(root.right);
+      //     max = Math.max((total_sum - sub_tree)*sub_tree, max);
+      // }
+      // prune(root.left);
+      // prune(root.right);
+      
+      if(root==null)
+        return 0;
+      long sub_left = prune(root.left);
+      long sub_right = prune(root.right);
+      long t_sum = sub_left + sub_right + root.val;
+      max = Math.max((total_sum - t_sum)*t_sum, max);
+      return t_sum;
+      
+    }
+    
+  public static int maxProduct(TreeNode root) {
+      total_sum = sum(root);
+      prune(root);
+      return (int)(max % (int)(Math.pow(10, 9) + 7));
+    }
+   
+    
+    public static void main(String agrs[]){
+    
+    TreeNode root = new TreeNode(2);
+    
+    root.left = new TreeNode(3);
+    root.left.left = new TreeNode(10);
+    root.left.right = new TreeNode(7);
+    root.left.left.left = new TreeNode(5);
+    root.left.left.right = new TreeNode(4);
+    root.left.right.left = new TreeNode(11);
+    root.left.right.right = new TreeNode(1);
+    
+    root.right = new TreeNode(9);
+    root.right.left = new TreeNode(8);
+    root.right.right = new TreeNode(6);
+    System.out.print(maxProduct(root));
+    }
+}
