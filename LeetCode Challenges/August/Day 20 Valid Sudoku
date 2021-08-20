@@ -1,0 +1,46 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+class Solution2 {
+    
+  public static boolean isValidSudoku(char[][] board) {
+      if(board.length!=9 && board[0].length!=9) return false;
+      for(int i=0;i<7;i+=3)
+          for(int j=0;j<7;j+=3){
+              int[] temp = new int[10];
+              for(int k=j;k<j+3;k++){
+                  for(int l=i;l<i+3;l++){
+                      int board_num = (int)(board[k][l]-'0');
+                      if((board_num>0) && (board_num<10)){
+//                          System.out.println(board_num);
+                        if(temp[board_num]==0) temp[board_num] = 1;
+                        else return false;
+                      }
+                      else if(board_num!=-2) return false;
+                  }
+              }
+          }
+      return true;
+    }
+   
+    
+    public static void main(String agrs[]){
+   
+        char[][] arr2 = {{'8','3','.','.','7','.','.','.','.'}
+,{'6','.','.','1','9','5','.','.','.'}
+,{'.','9','8','.','.','.','.','6','.'}
+,{'8','.','.','.','6','.','.','.','3'}
+,{'4','.','.','8','.','3','.','.','1'}
+,{'7','.','.','.','2','.','.','.','6'}
+,{'.','6','.','.','.','.','2','8','.'}
+,{'.','.','.','4','1','9','.','.','5'}
+,{'.','.','.','.','8','.','.','7','9'}};
+
+        if(isValidSudoku(arr2)) System.out.print("yes");
+        else System.out.print("no");
+    }
+}
