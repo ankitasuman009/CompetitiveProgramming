@@ -1,0 +1,35 @@
+class Solution {
+    public boolean valid(char[][] board, int row, int col, char num) {
+        int allrow = 3 * (row / 3);
+        int allcol = 3 * (col / 3);
+        for (int i = 0; i < 9; i++) {
+            if (board[i][col] == num) 
+                return false; //check row
+            if (board[row][i] == num) 
+                return false; //check column
+            if (board[allrow + i / 3][allcol + i % 3] == num) 
+                return false; //check 3*3 block
+        }
+        return true;
+    }
+     
+     
+     public boolean solve(char[][] board, int i, int j) {
+        if(i==9 && j==0) return true;
+        if(board[i][j]!='.') return solve(board, (j+1)==9?(i+1):i, (j+1)==9?0:(j+1));
+        
+        for(char num='1';num<='9';num++){
+            if(valid(board, i, j, num)){
+                board[i][j] = num;
+                if(solve(board, (j+1)==9?(i+1):i, (j+1)==9?0:(j+1))) return true;
+                board[i][j] = '.';
+            }
+        }
+        return false;   
+    }
+    
+    public void solveSudoku(char[][] board) {
+        if(board==null || board.length==0) return;
+        solve(board, 0, 0);
+    }
+}
