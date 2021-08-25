@@ -1,0 +1,9 @@
+class Solution {
+    public boolean judgeSquareSum(int c) {
+        for(long n=0;n*n<=c;n++){
+             double i = Math.sqrt(c-(n*n));
+             if((int)i==i) return true;
+         }
+         return false;
+    }
+}
