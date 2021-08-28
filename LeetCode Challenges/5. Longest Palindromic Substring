@@ -1,0 +1,49 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+class Solution2 {
+    
+    
+    public static String reverse(String s) {
+        String revStr = "";
+        for(int i=s.length()-1;i>=0;i--) revStr += s.charAt(i);
+        return revStr;
+    }
+    
+ public static String valid(String str1, String str2) {
+     String str = "";
+     int j = 0;
+     for(;j<str2.length();j++){
+        for(int i=0;i<str1.length();i++){
+            String temp = "";
+            int k = i, l = j;
+             while(k<str1.length() && l<str2.length() && str1.charAt(k)==str2.charAt(l)){temp += str2.charAt(l); k++; l++;}
+             str = temp.length()>str.length()?temp:str;
+        }
+     }
+     for(int i1=0, i2=str.length()-1;i1<str.length() && i2>=0;i1++, i2--)
+         if(str.charAt(i1)!=str.charAt(i2)) {
+             str = valid(str, reverse(str));
+             break;
+     }
+     return str;
+     
+    
+ }
+    
+    
+    public static String longestPalindrome(String s) {
+        if(s.length()<=1) return s;
+        return valid(s, reverse(s));
+    }
+   
+    
+    public static void main(String agrs[]){
+        
+      System.out.println(longestPalindrome("abcdbbfcba"));
+    }
+}
