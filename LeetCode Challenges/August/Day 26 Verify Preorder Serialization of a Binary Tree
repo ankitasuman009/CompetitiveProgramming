@@ -1,0 +1,12 @@
+class Solution {
+    public boolean isValidSerialization(String preorder) {
+        int ans = 1;
+        String[] strArr = preorder.split(",");
+        for(String s: strArr){
+            ans--;
+            if(ans<0) return false;
+            if(!s.equals("#")) ans += 2;
+        }
+        return ans==0;
+    }
+}
