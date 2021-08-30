@@ -1,0 +1,11 @@
+class Solution {
+    public int maxCount(int m, int n, int[][] ops) {
+       if(ops.length==0) return m*n;
+        int x = m, y = n;
+       for(int[] op: ops){
+           x = Math.min(op[0], x);
+           y = Math.min(op[1], y);
+       }
+        return x*y; 
+    }
+}
