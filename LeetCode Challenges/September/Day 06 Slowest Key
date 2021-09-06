@@ -1,0 +1,37 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+
+class Solution2 {
+  
+    public static char slowestKey(int[] releaseTimes, String keysPressed) {
+        int max = releaseTimes[0];
+        char c = keysPressed.charAt(0);
+        char[] charArr = keysPressed.toCharArray();
+        for(int i=1;i<charArr.length;i++){
+            int diff = releaseTimes[i]-releaseTimes[i-1];
+            if(diff>max){
+                max = diff;
+                c = charArr[i];
+            }
+            if(diff==max && (Integer.valueOf(c)<Integer.valueOf(charArr[i]))){
+                c = charArr[i];
+            }
+        }
+//        System.out.println();
+        return c;
+    }
+    
+    
+   
+    
+    public static void main(String agrs[]){
+      
+      int[] arr1 = {1, 2};
+      System.out.println(slowestKey(arr1, "ba"));
+    }
+}
