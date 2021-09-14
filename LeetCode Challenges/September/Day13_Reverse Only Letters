@@ -1,0 +1,34 @@
+
+package first;
+import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+class Solution2 {
+    
+   public static String reverseOnlyLetters(String s) {
+        char[] charArr = s.toCharArray();
+        int i = 0, j = s.length() - 1;
+        while(i<=j){
+            if(Character.isAlphabetic(charArr[i]) && Character.isAlphabetic(charArr[j])){
+                char c = charArr[i];
+                charArr[i] = charArr[j];
+                charArr[j] = c;
+                i++;
+                j--;
+                continue;
+            }
+            if(!Character.isAlphabetic(charArr[i])) i++;
+            if(!Character.isAlphabetic(charArr[j])) j--;
+        }
+        return String.copyValueOf(charArr);
+    }
+
+    
+   
+    
+    public static void main(String agrs[]){      
+        System.out.println(reverseOnlyLetters("Test1ng-Leet=code-Q!"));
+    }
+}
