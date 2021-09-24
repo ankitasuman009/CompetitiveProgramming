@@ -42,3 +42,32 @@ class Solution {
        return root;
     }
 }
+
+
+
+// Method 2(recursive)
+
+
+// class Solution {
+//    public Node connect(Node root) {
+//        if (root == null ) return root;
+//         if(root.left!=null){
+//             if(root.right!=null) root.left.next = root.right;
+//             else if(root.next==null) root.left.next=null;
+//             else root.left.next = findNext(root.next);
+//         }
+//        if(root.right!=null){
+//             if(root.next==null) root.right.next=null;
+//             else root.right.next = findNext(root.next);
+//         }
+//         connect (root.right);
+//         connect (root.left);
+//        return root;
+//     }
+//     private Node findNext(Node root){
+//         if (root==null) return null;
+//         if(root.left!=null) return root.left;
+//         else if(root.right!=null) return root.right;
+//         return findNext(root.next);
+//     }
+// }
